@@ -61,17 +61,7 @@ final class Init {
 	 * @access private
 	 * @return self
 	 */
-	private function __construct() {
-
-		// Remove the Draconian capital P filter.
-		remove_filter( 'the_title', 'capital_P_dangit', 11 );
-		remove_filter( 'the_content', 'capital_P_dangit', 11 );
-		remove_filter( 'comment_text', 'capital_P_dangit', 31 );
-
-		// Load classes to extend plugins.
-		add_action( 'init', [ $this, 'plugin_support' ] );
-
-	}
+	private function __construct() {}
 
 	/**
 	 * Load the required dependencies for this plugin.
@@ -90,23 +80,6 @@ final class Init {
 
 		// Frontend functionality, scripts and styles.
 		require_once WMSUG_PATH . 'frontend/class-frontend.php';
-
-		// Various media and media library functionality.
-		require_once WMSUG_PATH . 'includes/media/class-media.php';
-
-		/**
-		 * Register custom editor blocks.
-		 *
-		 * @todo Remove conditional statement when Gutenberg is in core?
-		 */
-		if ( wmsug_acf_pro() ) {
-			$editor = get_field( 'wmsug_classic_editor', 'option' );
-		} else {
-			$editor = get_option( 'wmsug_classic_editor' );
-		}
-		if ( ( wmsug_classicpress() || wmsug_new_cms() ) && ! $editor || is_plugin_active( 'gutenberg/gutenberg.php' ) ) {
-			require_once WMSUG_PATH . 'includes/editor-blocks/class-register-block-types.php';
-		}
 
 		// Post types and taxonomies.
 		require_once WMSUG_PATH . 'includes/post-types-taxes/class-post-type-tax.php';

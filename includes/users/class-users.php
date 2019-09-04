@@ -68,12 +68,7 @@ class Users {
 	 * @access private
 	 * @return void
 	 */
-	private function dependencies() {
-
-		// User avatars.
-		require_once WMSUG_PATH . 'includes/users/class-user-avatars.php';
-
-	}
+	private function dependencies() {}
 
 }
 

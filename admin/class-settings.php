@@ -68,42 +68,7 @@ class Settings {
 	 * @access private
 	 * @return void
 	 */
-	private function dependencies() {
-
-		/**
-		 * Settings pages.
-		 *
-		 * @since  1.0.0
-		 */
-
-		// Settings fields for script loading and more.
-		require_once WMSUG_PATH . 'admin/class-settings-page-scripts.php';
-
-		// Settings fields for site customization.
-		require_once WMSUG_PATH . 'admin/class-settings-page-site.php';
-
-		// Fields for the Media Settings page.
-		require_once WMSUG_PATH . 'admin/class-settings-page-dev-tools.php';
-
-		/**
-		 * Settings fields.
-		 *
-		 * @since  1.0.0
-		 */
-
-		// Settings fields for script loading and more.
-		require_once WMSUG_PATH . 'admin/class-settings-fields-scripts.php';
-
-		// Settings fields for site customization.
-		require_once WMSUG_PATH . 'admin/class-settings-fields-site.php';
-
-		// Settings fields for the media settings page.
-		require_once WMSUG_PATH . 'admin/class-settings-fields-media.php';
-
-		// Settings fields for development tools page.
-		require_once WMSUG_PATH . 'admin/class-settings-fields-dev-tools.php';
-
-	}
+	private function dependencies() {}
 
 }
 
