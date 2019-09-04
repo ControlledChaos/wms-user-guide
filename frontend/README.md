@@ -1,1 +1,1 @@
-# Controlled Chaos Plugin Frontend
+# User Guide Frontend

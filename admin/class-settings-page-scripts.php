@@ -2,14 +2,14 @@
 /**
  * Settings page for script loading and more.
  *
- * @package    Controlled_Chaos_Plugin
+ * @package    WMS_User_Guide
  * @subpackage Admin
  *
  * @since      1.0.0
  * @author     Greg Sweet <greg@ccdzine.com>
  */
 
-namespace CC_Plugin\Admin;
+namespace WMS_User_Guide\Admin;
 
 // If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {
@@ -75,10 +75,10 @@ class Settings_Page_Scripts {
     public function settings_page() {
 
 		$this->page_help_section = add_options_page(
-			__( 'Script Options', 'controlled-chaos-plugin' ),
-			__( 'Script Options', 'controlled-chaos-plugin' ),
+			__( 'Script Options', 'wms-user-guide' ),
+			__( 'Script Options', 'wms-user-guide' ),
 			'manage_options',
-			CCP_ADMIN_SLUG . '-scripts',
+			WMSUG_ADMIN_SLUG . '-scripts',
 			[ $this, 'page_output' ]
 		);
 
@@ -96,7 +96,7 @@ class Settings_Page_Scripts {
 	 */
     public function page_output() {
 
-		require CCP_PATH . 'admin/partials/settings-page-scripts.php';
+		require WMSUG_PATH . 'admin/partials/settings-page-scripts.php';
 
 	}
 
@@ -118,7 +118,7 @@ class Settings_Page_Scripts {
 		// Inline Scripts.
 		$screen->add_help_tab( [
 			'id'       => 'inline_scripts',
-			'title'    => __( 'Inline Scripts', 'controlled-chaos-plugin' ),
+			'title'    => __( 'Inline Scripts', 'wms-user-guide' ),
 			'content'  => null,
 			'callback' => [ $this, 'help_inline_scripts' ]
 		] );
@@ -126,7 +126,7 @@ class Settings_Page_Scripts {
 		// Inline Scripts.
 		$screen->add_help_tab( [
 			'id'       => 'inline_jquery',
-			'title'    => __( 'Inline jQuery', 'controlled-chaos-plugin' ),
+			'title'    => __( 'Inline jQuery', 'wms-user-guide' ),
 			'content'  => null,
 			'callback' => [ $this, 'help_inline_jquery' ]
 		] );
@@ -134,7 +134,7 @@ class Settings_Page_Scripts {
 		// Remove Emoji Scripts.
 		$screen->add_help_tab( [
 			'id'       => 'remove_emoji',
-			'title'    => __( 'Emoji Script', 'controlled-chaos-plugin' ),
+			'title'    => __( 'Emoji Script', 'wms-user-guide' ),
 			'content'  => null,
 			'callback' => [ $this, 'help_remove_emoji' ]
 		] );
@@ -155,7 +155,7 @@ class Settings_Page_Scripts {
      */
 	public function help_inline_scripts() {
 
-		include_once CCP_PATH . 'admin/partials/help/help-inline-scripts.php';
+		include_once WMSUG_PATH . 'admin/partials/help/help-inline-scripts.php';
 
 	}
 
@@ -168,7 +168,7 @@ class Settings_Page_Scripts {
      */
 	public function help_inline_jquery() {
 
-		include_once CCP_PATH . 'admin/partials/help/help-inline-jquery.php';
+		include_once WMSUG_PATH . 'admin/partials/help/help-inline-jquery.php';
 
 	}
 
@@ -181,7 +181,7 @@ class Settings_Page_Scripts {
      */
 	public function help_remove_emoji() {
 
-		include_once CCP_PATH . 'admin/partials/help/help-remove-emoji.php';
+		include_once WMSUG_PATH . 'admin/partials/help/help-remove-emoji.php';
 
 	}
 
@@ -195,10 +195,10 @@ class Settings_Page_Scripts {
     public function page_help_section_sidebar() {
 
 		$html = '<ul>
-			<li><a href="https://github.com/kenwheeler/slick" target="_blank" style="text-decoration: none;">' . __( 'Slick on GitHub', 'controlled-chaos-plugin' ) . '</a></li>
-			<li><a href="https://github.com/vdw/Tabslet" target="_blank" style="text-decoration: none;">' . __( 'Tabslet on GitHub', 'controlled-chaos-plugin' ) . '</a></li>
-			<li><a href="https://github.com/leafo/sticky-kit" target="_blank" style="text-decoration: none;">' . __( 'Sticky-kit on GitHub', 'controlled-chaos-plugin' ) . '</a></li>
-			<li><a href="https://github.com/iamceege/tooltipster" target="_blank" style="text-decoration: none;">' . __( 'Tooltipster on GitHub', 'controlled-chaos-plugin' ) . '</a></li>
+			<li><a href="https://github.com/kenwheeler/slick" target="_blank" style="text-decoration: none;">' . __( 'Slick on GitHub', 'wms-user-guide' ) . '</a></li>
+			<li><a href="https://github.com/vdw/Tabslet" target="_blank" style="text-decoration: none;">' . __( 'Tabslet on GitHub', 'wms-user-guide' ) . '</a></li>
+			<li><a href="https://github.com/leafo/sticky-kit" target="_blank" style="text-decoration: none;">' . __( 'Sticky-kit on GitHub', 'wms-user-guide' ) . '</a></li>
+			<li><a href="https://github.com/iamceege/tooltipster" target="_blank" style="text-decoration: none;">' . __( 'Tooltipster on GitHub', 'wms-user-guide' ) . '</a></li>
 		</ul>';
 
 		return $html;
@@ -214,11 +214,11 @@ class Settings_Page_Scripts {
  * @access public
  * @return object Returns an instance of the class.
  */
-function ccp_settings_page_scripts() {
+function wmsug_settings_page_scripts() {
 
 	return Settings_Page_Scripts::instance();
 
 }
 
 // Run an instance of the class.
-ccp_settings_page_scripts();
+wmsug_settings_page_scripts();

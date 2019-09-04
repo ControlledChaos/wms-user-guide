@@ -4,7 +4,7 @@
  *
  * Rewrites the WordPress gallery shortcode with data attributes for Fancybox 3.
  *
- * @package    Controlled_Chaos_Plugin
+ * @package    WMS_User_Guide
  * @subpackage Includes\Media
  *
  * @since      1.0.0
@@ -14,7 +14,7 @@
  *             editor adds the option to link to the full size image.
  */
 
-namespace CC_Plugin\Includes\Media;
+namespace WMS_User_Guide\Includes\Media;
 
 // If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {
@@ -441,11 +441,11 @@ class Gallery_Shortcode {
  * @access public
  * @return object Returns an instance of the class.
  */
-function ccp_gallery_shortcode() {
+function wmsug_gallery_shortcode() {
 
 	return Gallery_Shortcode::instance();
 
 }
 
 // Run an instance of the class.
-ccp_gallery_shortcode();
+wmsug_gallery_shortcode();

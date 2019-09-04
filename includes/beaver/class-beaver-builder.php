@@ -10,7 +10,7 @@
  * No namespace since Beaver Builder is not namespaced and class
  * references will throw an error without a namespace reference.
  *
- * @package    Controlled_Chaos_Plugin
+ * @package    WMS_User_Guide
  * @subpackage Includes\Beaver
  *
  * @since      1.0.0
@@ -28,7 +28,7 @@ if ( ! defined( 'WPINC' ) ) {
  * @since  1.0.0
  * @access public
  */
-class CCP_Beaver_Builder {
+class WMSUG_Beaver_Builder {
 
 	/**
 	 * Constructor method
@@ -72,8 +72,8 @@ class CCP_Beaver_Builder {
 	 */
 	static public function load_modules() {
 
-		require_once CCP_PATH . 'includes/beaver/modules/basic-example/basic-example.php';
-		require_once CCP_PATH . 'includes/beaver/modules/example/example.php';
+		require_once WMSUG_PATH . 'includes/beaver/modules/basic-example/basic-example.php';
+		require_once WMSUG_PATH . 'includes/beaver/modules/example/example.php';
 
 	}
 
@@ -86,7 +86,7 @@ class CCP_Beaver_Builder {
 	 */
 	static public function register_fields( $fields ) {
 
-		$fields['ccp-custom-beaver-field'] = CCP_PATH . 'includes/beaver/fields/custom-fields.php';
+		$fields['wmsug-custom-beaver-field'] = WMSUG_PATH . 'includes/beaver/fields/custom-fields.php';
 		return $fields;
 
 	}
@@ -104,12 +104,12 @@ class CCP_Beaver_Builder {
 			return;
 		}
 
-		wp_enqueue_style( 'ccp-beaver-fields', CCP_URL . 'includes/beaver/assets/css/fields.css', [], '' );
-		wp_enqueue_script( 'ccp-beaver-fields', CCP_URL . 'includes/beaver/assets/js/fields.js', [], '', true );
+		wp_enqueue_style( 'wmsug-beaver-fields', WMSUG_URL . 'includes/beaver/assets/css/fields.css', [], '' );
+		wp_enqueue_script( 'wmsug-beaver-fields', WMSUG_URL . 'includes/beaver/assets/js/fields.js', [], '', true );
 
 	}
 
 }
 
 // Run the class.
-$ccp_beaver_builder = new CCP_Beaver_Builder;
+$wmsug_beaver_builder = new WMSUG_Beaver_Builder;

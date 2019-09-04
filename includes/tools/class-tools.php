@@ -2,7 +2,7 @@
 /**
  * Various tools included.
  *
- * @package    Controlled_Chaos_Plugin
+ * @package    WMS_User_Guide
  * @subpackage Includes\Tools
  *
  * @since      1.0.0
@@ -12,7 +12,7 @@
  *             hiding the Development Tools admin page.
  */
 
-namespace CC_Plugin\Includes\Tools;
+namespace WMS_User_Guide\Includes\Tools;
 
 // If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {
@@ -82,43 +82,43 @@ class Tools {
 	private function dependencies() {
 
 		// Minify HTML source code.
-		$debug = get_option( 'ccp_debug_mode' );
+		$debug = get_option( 'wmsug_debug_mode' );
 
-		require_once CCP_PATH . 'includes/tools/class-debug.php';
+		require_once WMSUG_PATH . 'includes/tools/class-debug.php';
 
 		// Include the RTL (right to left) test if option selected.
-		$rtl = get_option( 'ccp_rtl_test' );
+		$rtl = get_option( 'wmsug_rtl_test' );
 
 		if ( $rtl ) {
-			require_once CCP_PATH . 'includes/tools/class-rtl-test.php';
+			require_once WMSUG_PATH . 'includes/tools/class-rtl-test.php';
 		}
 
 		// Minify HTML source code.
-		$minify = get_option( 'ccp_html_minify' );
+		$minify = get_option( 'wmsug_html_minify' );
 
 		if ( $minify ) {
-			require_once CCP_PATH . 'includes/tools/class-minify-process.php';
+			require_once WMSUG_PATH . 'includes/tools/class-minify-process.php';
 		}
 
 		// Live theme test.
-		$theme_test = get_option( 'ccp_theme_test' );
+		$theme_test = get_option( 'wmsug_theme_test' );
 
 		if ( $theme_test ) {
-			include_once CCP_PATH . 'includes/tools/class-theme-test.php';
+			include_once WMSUG_PATH . 'includes/tools/class-theme-test.php';
 		}
 
 		// Database reset.
-		$database_reset = get_option( 'ccp_database_reset' );
+		$database_reset = get_option( 'wmsug_database_reset' );
 
 		if ( $database_reset ) {
-			require_once CCP_PATH . 'includes/tools/database-reset/database-reset.php';
+			require_once WMSUG_PATH . 'includes/tools/database-reset/database-reset.php';
 		}
 
 		// Customizer reset.
-		$customizer_reset = get_option( 'ccp_customizer_reset' );
+		$customizer_reset = get_option( 'wmsug_customizer_reset' );
 
 		if ( $customizer_reset ) {
-			require_once CCP_PATH . 'includes/tools/customizer-reset/customizer-reset.php';
+			require_once WMSUG_PATH . 'includes/tools/customizer-reset/customizer-reset.php';
 		}
 
 	}
@@ -158,11 +158,11 @@ class Tools {
  * @access public
  * @return object Returns an instance of the class.
  */
-function ccp_tools() {
+function wmsug_tools() {
 
 	return Tools::instance();
 
 }
 
 // Run an instance of the class.
-ccp_tools();
+wmsug_tools();

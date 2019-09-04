@@ -2,7 +2,7 @@
 /**
  * Reset command.
  *
- * @package    Controlled_Chaos_Plugin
+ * @package    WMS_User_Guide
  * @subpackage Includes\Tools\Database_Reset
  *
  * @since      1.0.0
@@ -10,7 +10,7 @@
  * @author     Greg Sweet <greg@ccdzine.com>
  */
 
-// namespace CC_Plugin\Includes\Tools\Database_Reset;
+// namespace WMS_User_Guide\Includes\Tools\Database_Reset;
 
 // If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {
@@ -125,10 +125,10 @@ class DB_Reset_Command extends WP_CLI_Command {
 
 	private function output_successful_notice() {
 
-		WP_CLI::line( __( 'The selected tables were reset', 'controlled-chaos-plugin' ) );
+		WP_CLI::line( __( 'The selected tables were reset', 'wms-user-guide' ) );
 
 		if ( 'true' === $this->reactivate ) {
-			WP_CLI::line( __( 'The current theme and plugins were reactivated','controlled-chaos-plugin' ) );
+			WP_CLI::line( __( 'The current theme and plugins were reactivated','wms-user-guide' ) );
 		}
 
 	}

@@ -6,14 +6,14 @@
  * at which several tools for the website development process
  * are provieded.
  *
- * @package    Controlled_Chaos_Plugin
+ * @package    WMS_User_Guide
  * @subpackage Admin
  *
  * @since      1.0.0
  * @author     Greg Sweet <greg@ccdzine.com>
  */
 
-namespace CC_Plugin\Admin;
+namespace WMS_User_Guide\Admin;
 
 // If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {
@@ -81,10 +81,10 @@ class Settings_Page_Dev_Tools {
 	public function settings_page() {
 
 		$this->page_help_section = add_management_page(
-			__( 'Website Development', 'controlled-chaos-plugin' ),
-			__( 'Site Development', 'controlled-chaos-plugin' ),
+			__( 'Website Development', 'wms-user-guide' ),
+			__( 'Site Development', 'wms-user-guide' ),
 			'manage_options',
-			CCP_ADMIN_SLUG . '-dev-tools',
+			WMSUG_ADMIN_SLUG . '-dev-tools',
 			[ $this, 'page_output' ]
 		);
 
@@ -102,7 +102,7 @@ class Settings_Page_Dev_Tools {
 	 */
 	public function page_output() {
 
-		require CCP_PATH . 'admin/partials/settings-page-development.php';
+		require WMSUG_PATH . 'admin/partials/settings-page-development.php';
 
 	}
 
@@ -124,7 +124,7 @@ class Settings_Page_Dev_Tools {
 		// More information.
 		$screen->add_help_tab( [
 			'id'       => 'help_dev_info',
-			'title'    => __( 'More Information', 'controlled-chaos-plugin' ),
+			'title'    => __( 'More Information', 'wms-user-guide' ),
 			'content'  => null,
 			'callback' => [ $this, 'help_dev_info_output' ]
 		] );
@@ -145,7 +145,7 @@ class Settings_Page_Dev_Tools {
      */
 	public function help_dev_info_output() {
 
-		include_once CCP_PATH . 'admin/partials/help/help-dev-info.php';
+		include_once WMSUG_PATH . 'admin/partials/help/help-dev-info.php';
 
     }
 
@@ -173,11 +173,11 @@ class Settings_Page_Dev_Tools {
  * @access public
  * @return object Returns an instance of the class.
  */
-function ccp_settings_page_dev_tools() {
+function wmsug_settings_page_dev_tools() {
 
 	return Settings_Page_Dev_Tools::instance();
 
 }
 
 // Run an instance of the class.
-ccp_settings_page_dev_tools();
+wmsug_settings_page_dev_tools();

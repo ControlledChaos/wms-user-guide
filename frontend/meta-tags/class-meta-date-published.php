@@ -2,14 +2,14 @@
 /**
  * Date published meta tag.
  *
- * @package    Controlled_Chaos_Plugin
+ * @package    WMS_User_Guide
  * @subpackage Frontend\Meta_Tags
  *
  * @since      1.0.0
  * @author     Greg Sweet <greg@ccdzine.com>
  */
 
-namespace CC_Plugin\Frontend\Meta_Tags;
+namespace WMS_User_Guide\Frontend\Meta_Tags;
 
 // If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {
@@ -58,7 +58,7 @@ class Meta_Date_Published {
 	public function __construct() {
 
 		// Add published date to the meta tag.
-		add_action( 'ccp_meta_date_pub_tag', [ $this, 'date' ] );
+		add_action( 'wmsug_meta_date_pub_tag', [ $this, 'date' ] );
 
 	}
 
@@ -96,11 +96,11 @@ class Meta_Date_Published {
  * @access public
  * @return object Returns an instance of the class.
  */
-function ccp_meta_date_pub() {
+function wmsug_meta_date_pub() {
 
 	return Meta_Date_Published::instance();
 
 }
 
 // Run an instance of the class.
-ccp_meta_date_pub();
+wmsug_meta_date_pub();

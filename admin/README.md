@@ -1,1 +1,1 @@
-# Controlled Chaos Plugin Admin
+# User Guide Admin

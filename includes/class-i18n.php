@@ -2,14 +2,14 @@
 /**
  * Define the internationalization functionality.
  *
- * @package    Controlled_Chaos_Plugin
+ * @package    WMS_User_Guide
  * @subpackage Includes
  *
  * @since      1.0.0
  * @author     Greg Sweet <greg@ccdzine.com>
  */
 
-namespace CC_Plugin\Includes;
+namespace WMS_User_Guide\Includes;
 
 // If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {
@@ -74,7 +74,7 @@ class i18n {
 	public function load_plugin_textdomain() {
 
 		load_plugin_textdomain(
-			'controlled-chaos-plugin',
+			'wms-user-guide',
 			false,
 			dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/'
 		);
@@ -90,11 +90,11 @@ class i18n {
  * @access public
  * @return object Returns an instance of the class.
  */
-function ccp_i18n() {
+function wmsug_i18n() {
 
 	return i18n::instance();
 
 }
 
 // Run an instance of the class.
-ccp_i18n();
+wmsug_i18n();

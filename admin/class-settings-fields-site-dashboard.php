@@ -2,16 +2,16 @@
 /**
  * Settings for the Dashboard tab on the Site Settings page.
  *
- * @package    Controlled_Chaos_Plugin
+ * @package    WMS_User_Guide
  * @subpackage Admin
  *
  * @since      1.0.0
  * @author     Greg Sweet <greg@ccdzine.com>
  */
 
-namespace CC_Plugin\Admin\Partials;
+namespace WMS_User_Guide\Admin\Partials;
 
-use CC_Plugin\Admin\Partials\Field_Callbacks\Dashboard_Callbacks as Callbacks;
+use WMS_User_Guide\Admin\Partials\Field_Callbacks\Dashboard_Callbacks as Callbacks;
 
 // If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {
@@ -84,7 +84,7 @@ class Settings_Fields_Site_Dashboard {
 	private function dependencies() {
 
 		// Callbacks for the Dashboard tab.
-		require CCP_PATH . 'admin/partials/field-callbacks/class-dashboard-callbacks.php';
+		require WMSUG_PATH . 'admin/partials/field-callbacks/class-dashboard-callbacks.php';
 
 	}
 
@@ -101,130 +101,130 @@ class Settings_Fields_Site_Dashboard {
 
 		// Dashboard settings section.
 		add_settings_section(
-			'ccp-site-dashboard',
-			__( 'Dashboard Settings', 'controlled-chaos-plugin' ),
+			'wmsug-site-dashboard',
+			__( 'Dashboard Settings', 'wms-user-guide' ),
 			[],
-			'ccp-site-dashboard'
+			'wmsug-site-dashboard'
 		);
 
 		// Use the custom welcome panel.
 		add_settings_field(
-			'ccp_custom_welcome',
-			__( 'Custom Welcome', 'controlled-chaos-plugin' ),
+			'wmsug_custom_welcome',
+			__( 'Custom Welcome', 'wms-user-guide' ),
 			[ Callbacks::instance(), 'custom_welcome' ],
-			'ccp-site-dashboard',
-			'ccp-site-dashboard',
-			[ esc_html__( 'Use the custom Welcome panel on the Dashboard', 'controlled-chaos-plugin' ) ]
+			'wmsug-site-dashboard',
+			'wmsug-site-dashboard',
+			[ esc_html__( 'Use the custom Welcome panel on the Dashboard', 'wms-user-guide' ) ]
 		);
 
 		register_setting(
-			'ccp-site-dashboard',
-			'ccp_custom_welcome'
+			'wmsug-site-dashboard',
+			'wmsug_custom_welcome'
 		);
 
 		// Hide the try Gutenberg panel.
 		add_settings_field(
-			'ccp_hide_try_gutenberg',
-			__( 'Hide Try Gutenberg', 'controlled-chaos-plugin' ),
+			'wmsug_hide_try_gutenberg',
+			__( 'Hide Try Gutenberg', 'wms-user-guide' ),
 			[ Callbacks::instance(), 'hide_try_gutenberg' ],
-			'ccp-site-dashboard',
-			'ccp-site-dashboard',
-			[ esc_html__( 'Hide the "Try Gutenberg" panel on the Dashboard', 'controlled-chaos-plugin' ) ]
+			'wmsug-site-dashboard',
+			'wmsug-site-dashboard',
+			[ esc_html__( 'Hide the "Try Gutenberg" panel on the Dashboard', 'wms-user-guide' ) ]
 		);
 
 		register_setting(
-			'ccp-site-dashboard',
-			'ccp_hide_try_gutenberg'
+			'wmsug-site-dashboard',
+			'wmsug_hide_try_gutenberg'
 		);
 
 		// Hide the welcome panel.
 		add_settings_field(
-			'ccp_hide_welcome',
-			__( 'Hide Welcome', 'controlled-chaos-plugin' ),
+			'wmsug_hide_welcome',
+			__( 'Hide Welcome', 'wms-user-guide' ),
 			[ Callbacks::instance(), 'hide_welcome' ],
-			'ccp-site-dashboard',
-			'ccp-site-dashboard',
-			[ esc_html__( 'Hide the Welcome panel on the Dashboard', 'controlled-chaos-plugin' ) ]
+			'wmsug-site-dashboard',
+			'wmsug-site-dashboard',
+			[ esc_html__( 'Hide the Welcome panel on the Dashboard', 'wms-user-guide' ) ]
 		);
 
 		register_setting(
-			'ccp-site-dashboard',
-			'ccp_hide_welcome'
+			'wmsug-site-dashboard',
+			'wmsug_hide_welcome'
 		);
 
 		// Hide the welcome panel dismiss button.
 		add_settings_field(
-			'ccp_remove_welcome_dismiss',
-			__( 'Remove Welcome Dismiss', 'controlled-chaos-plugin' ),
+			'wmsug_remove_welcome_dismiss',
+			__( 'Remove Welcome Dismiss', 'wms-user-guide' ),
 			[ Callbacks::instance(), 'remove_welcome_dismiss' ],
-			'ccp-site-dashboard',
-			'ccp-site-dashboard',
-			[ esc_html__( 'Remove the Welcome panel dismiss button', 'controlled-chaos-plugin' ) ]
+			'wmsug-site-dashboard',
+			'wmsug-site-dashboard',
+			[ esc_html__( 'Remove the Welcome panel dismiss button', 'wms-user-guide' ) ]
 		);
 
 		register_setting(
-			'ccp-site-dashboard',
-			'ccp_remove_welcome_dismiss'
+			'wmsug-site-dashboard',
+			'wmsug_remove_welcome_dismiss'
 		);
 
 		// Hide WordPress News widget.
 		add_settings_field(
-			'ccp_hide_wp_news',
-			__( 'Hide WordPress News', 'controlled-chaos-plugin' ),
+			'wmsug_hide_wp_news',
+			__( 'Hide WordPress News', 'wms-user-guide' ),
 			[ Callbacks::instance(), 'hide_wp_news' ],
-			'ccp-site-dashboard',
-			'ccp-site-dashboard',
-			[ esc_html__( 'Hide the WordPress News widget on the Dashboard', 'controlled-chaos-plugin' ) ]
+			'wmsug-site-dashboard',
+			'wmsug-site-dashboard',
+			[ esc_html__( 'Hide the WordPress News widget on the Dashboard', 'wms-user-guide' ) ]
 		);
 
 		register_setting(
-			'ccp-site-dashboard',
-			'ccp_hide_wp_news'
+			'wmsug-site-dashboard',
+			'wmsug_hide_wp_news'
 		);
 
 		// Hide Quick Draft (QuickPress) widget.
 		add_settings_field(
-			'ccp_hide_quickpress',
-			__( 'Hide Quick Draft', 'controlled-chaos-plugin' ),
+			'wmsug_hide_quickpress',
+			__( 'Hide Quick Draft', 'wms-user-guide' ),
 			[ Callbacks::instance(), 'hide_quickpress' ],
-			'ccp-site-dashboard',
-			'ccp-site-dashboard',
-			[ esc_html__( 'Hide the Quick Draft widget on the Dashboard', 'controlled-chaos-plugin' ) ]
+			'wmsug-site-dashboard',
+			'wmsug-site-dashboard',
+			[ esc_html__( 'Hide the Quick Draft widget on the Dashboard', 'wms-user-guide' ) ]
 		);
 
 		register_setting(
-			'ccp-site-dashboard',
-			'ccp_hide_quickpress'
+			'wmsug-site-dashboard',
+			'wmsug_hide_quickpress'
 		);
 
 		// Hide At a Glance widget.
 		add_settings_field(
-			'ccp_hide_at_glance',
-			__( 'Hide At a Glance', 'controlled-chaos-plugin' ),
+			'wmsug_hide_at_glance',
+			__( 'Hide At a Glance', 'wms-user-guide' ),
 			[ Callbacks::instance(), 'hide_at_glance' ],
-			'ccp-site-dashboard',
-			'ccp-site-dashboard',
-			[ esc_html__( 'Hide the At a Glance widget on the Dashboard', 'controlled-chaos-plugin' ) ]
+			'wmsug-site-dashboard',
+			'wmsug-site-dashboard',
+			[ esc_html__( 'Hide the At a Glance widget on the Dashboard', 'wms-user-guide' ) ]
 		);
 
 		register_setting(
-			'ccp-site-dashboard',
-			'ccp_hide_at_glance'
+			'wmsug-site-dashboard',
+			'wmsug_hide_at_glance'
 		);
 
 		// Hide Activity widget.
 		add_settings_field(
-			'ccp_hide_activity',
-			__( 'Hide Activity', 'controlled-chaos-plugin' ),
+			'wmsug_hide_activity',
+			__( 'Hide Activity', 'wms-user-guide' ),
 			[ Callbacks::instance(), 'hide_activity' ],
-			'ccp-site-dashboard',
-			'ccp-site-dashboard',
-			[ esc_html__( 'Hide the Activity widget on the Dashboard', 'controlled-chaos-plugin' ) ]
+			'wmsug-site-dashboard',
+			'wmsug-site-dashboard',
+			[ esc_html__( 'Hide the Activity widget on the Dashboard', 'wms-user-guide' ) ]
 		);
 
 		register_setting(
-			'ccp-site-dashboard',
-			'ccp_hide_activity'
+			'wmsug-site-dashboard',
+			'wmsug_hide_activity'
 		);
 
 	}
@@ -238,11 +238,11 @@ class Settings_Fields_Site_Dashboard {
  * @access public
  * @return object Returns an instance of the class.
  */
-function ccp_settings_fields_site_dashboard() {
+function wmsug_settings_fields_site_dashboard() {
 
 	return Settings_Fields_Site_Dashboard::instance();
 
 }
 
 // Run an instance of the class.
-ccp_settings_fields_site_dashboard();
+wmsug_settings_fields_site_dashboard();

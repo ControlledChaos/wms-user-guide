@@ -2,14 +2,14 @@
 /**
  * Register admin toolbar menus.
  *
- * @package    Controlled_Chaos_Plugin
+ * @package    WMS_User_Guide
  * @subpackage Admin
  *
  * @since      1.0.0
  * @author     Greg Sweet <greg@ccdzine.com>
  */
 
-namespace CC_Plugin\Admin;
+namespace WMS_User_Guide\Admin;
 
 // If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {
@@ -83,12 +83,12 @@ class Admin_Toolbar_Menus {
 
 		register_nav_menus(
 			[
-			'ccp_admin_toolbar_site'       => esc_html__( 'Admin Toolbar: Site Name', 'controlled-chaos-plugin' ),
-			'ccp_admin_toolbar_main'       => esc_html__( 'Admin Toolbar: Main', 'controlled-chaos-plugin' ),
-			'ccp_admin_toolbar_account'    => esc_html__( 'Admin Toolbar: My Account', 'controlled-chaos-plugin' ),
-			'ccp_frontend_toolbar_site'    => esc_html__( 'Frontend Toolbar: Site Name', 'controlled-chaos-plugin' ),
-			'ccp_frontend_toolbar_main'    => esc_html__( 'Frontend Toolbar: Main', 'controlled-chaos-plugin' ),
-			'ccp_frontend_toolbar_account' => esc_html__( 'Frontend Toolbar: My Account', 'controlled-chaos-plugin' )
+			'wmsug_admin_toolbar_site'       => esc_html__( 'Admin Toolbar: Site Name', 'wms-user-guide' ),
+			'wmsug_admin_toolbar_main'       => esc_html__( 'Admin Toolbar: Main', 'wms-user-guide' ),
+			'wmsug_admin_toolbar_account'    => esc_html__( 'Admin Toolbar: My Account', 'wms-user-guide' ),
+			'wmsug_frontend_toolbar_site'    => esc_html__( 'Frontend Toolbar: Site Name', 'wms-user-guide' ),
+			'wmsug_frontend_toolbar_main'    => esc_html__( 'Frontend Toolbar: Main', 'wms-user-guide' ),
+			'wmsug_frontend_toolbar_account' => esc_html__( 'Frontend Toolbar: My Account', 'wms-user-guide' )
 			]
 		);
 
@@ -103,9 +103,9 @@ class Admin_Toolbar_Menus {
 	 */
 	public function admin_menu_main( $wp_admin_bar ) {
 
-		if ( is_admin() && is_user_logged_in() && ( $locations = get_nav_menu_locations() ) && isset( $locations[ 'ccp_admin_toolbar_main' ] ) ) {
+		if ( is_admin() && is_user_logged_in() && ( $locations = get_nav_menu_locations() ) && isset( $locations[ 'wmsug_admin_toolbar_main' ] ) ) {
 
-			$menu = wp_get_nav_menu_object( $locations[ 'ccp_admin_toolbar_main' ] );
+			$menu = wp_get_nav_menu_object( $locations[ 'wmsug_admin_toolbar_main' ] );
 
 			if ( false != $menu ) {
 
@@ -161,9 +161,9 @@ class Admin_Toolbar_Menus {
 	 */
 	public function admin_menu_site( $wp_admin_bar ) {
 
-		if ( is_admin() && is_user_logged_in() && ( $locations = get_nav_menu_locations() ) && isset( $locations[ 'ccp_admin_toolbar_site' ] ) ) {
+		if ( is_admin() && is_user_logged_in() && ( $locations = get_nav_menu_locations() ) && isset( $locations[ 'wmsug_admin_toolbar_site' ] ) ) {
 
-			$menu = wp_get_nav_menu_object( $locations[ 'ccp_admin_toolbar_site' ] );
+			$menu = wp_get_nav_menu_object( $locations[ 'wmsug_admin_toolbar_site' ] );
 
 			if ( false != $menu ) {
 
@@ -220,9 +220,9 @@ class Admin_Toolbar_Menus {
 	 */
 	public function admin_menu_account( $wp_admin_bar ) {
 
-		if ( is_admin() && is_user_logged_in() && ( $locations = get_nav_menu_locations() ) && isset( $locations[ 'ccp_admin_toolbar_account' ] ) ) {
+		if ( is_admin() && is_user_logged_in() && ( $locations = get_nav_menu_locations() ) && isset( $locations[ 'wmsug_admin_toolbar_account' ] ) ) {
 
-			$menu = wp_get_nav_menu_object( $locations[ 'ccp_admin_toolbar_account' ] );
+			$menu = wp_get_nav_menu_object( $locations[ 'wmsug_admin_toolbar_account' ] );
 
 			if ( false != $menu ) {
 
@@ -279,9 +279,9 @@ class Admin_Toolbar_Menus {
 	 */
 	public function frontend_menu_main( $wp_admin_bar ) {
 
-		if ( ! is_admin() && is_user_logged_in() && ( $locations = get_nav_menu_locations() ) && isset( $locations[ 'ccp_frontend_toolbar_main' ] ) ) {
+		if ( ! is_admin() && is_user_logged_in() && ( $locations = get_nav_menu_locations() ) && isset( $locations[ 'wmsug_frontend_toolbar_main' ] ) ) {
 
-			$menu = wp_get_nav_menu_object( $locations[ 'ccp_frontend_toolbar_main' ] );
+			$menu = wp_get_nav_menu_object( $locations[ 'wmsug_frontend_toolbar_main' ] );
 
 			if ( false != $menu ) {
 
@@ -338,9 +338,9 @@ class Admin_Toolbar_Menus {
 	 */
 	public function frontend_menu_site( $wp_admin_bar ) {
 
-		if ( ! is_admin() && is_user_logged_in() && ( $locations = get_nav_menu_locations() ) && isset( $locations[ 'ccp_frontend_toolbar_site' ] ) ) {
+		if ( ! is_admin() && is_user_logged_in() && ( $locations = get_nav_menu_locations() ) && isset( $locations[ 'wmsug_frontend_toolbar_site' ] ) ) {
 
-			$menu = wp_get_nav_menu_object( $locations[ 'ccp_frontend_toolbar_site' ] );
+			$menu = wp_get_nav_menu_object( $locations[ 'wmsug_frontend_toolbar_site' ] );
 
 			if ( false != $menu ) {
 
@@ -397,9 +397,9 @@ class Admin_Toolbar_Menus {
 	 */
 	public function frontend_menu_account( $wp_admin_bar ) {
 
-		if ( ! is_admin() && is_user_logged_in() && ( $locations = get_nav_menu_locations() ) && isset( $locations[ 'ccp_frontend_toolbar_account' ] ) ) {
+		if ( ! is_admin() && is_user_logged_in() && ( $locations = get_nav_menu_locations() ) && isset( $locations[ 'wmsug_frontend_toolbar_account' ] ) ) {
 
-			$menu = wp_get_nav_menu_object( $locations[ 'ccp_frontend_toolbar_account' ] );
+			$menu = wp_get_nav_menu_object( $locations[ 'wmsug_frontend_toolbar_account' ] );
 
 			if ( false != $menu ) {
 
@@ -456,11 +456,11 @@ class Admin_Toolbar_Menus {
  * @access public
  * @return object Returns an instance of the class.
  */
-function ccp_admin_toolbar_menus() {
+function wmsug_admin_toolbar_menus() {
 
 	return Admin_Toolbar_Menus::instance();
 
 }
 
 // Run an instance of the class.
-ccp_admin_toolbar_menus();
+wmsug_admin_toolbar_menus();

@@ -2,7 +2,7 @@
 /**
  * Fired when the plugin is uninstalled.
  *
- * @package    Controlled_Chaos_Plugin
+ * @package    WMS_User_Guide
  * @subpackage Admin
  *
  * @since      1.0.0
@@ -24,16 +24,16 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
  * @access public
  * @return void
  */
-function ccp_user_avatars_uninstall() {
+function wmsug_user_avatars_uninstall() {
 
-	$ccp_user_avatars = new ccp_user_avatars;
+	$wmsug_user_avatars = new wmsug_user_avatars;
 	$users            = get_users_of_blog();
 
 	foreach ( $users as $user ) {
-		$ccp_user_avatars->avatar_delete( $user->user_id );
+		$wmsug_user_avatars->avatar_delete( $user->user_id );
 	}
 
-	delete_option( 'ccp_user_avatars_caps' );
+	delete_option( 'wmsug_user_avatars_caps' );
 
 }
-register_uninstall_hook( __FILE__, 'ccp_user_avatars_uninstall' );
+register_uninstall_hook( __FILE__, 'wmsug_user_avatars_uninstall' );

@@ -2,14 +2,14 @@
 /**
  * Enqueue frontend scripts.
  *
- * @package    Controlled_Chaos_Plugin
+ * @package    WMS_User_Guide
  * @subpackage Frontend
  *
  * @since      1.0.0
  * @author     Greg Sweet <greg@ccdzine.com>
  */
 
-namespace CC_Plugin\Frontend;
+namespace WMS_User_Guide\Frontend;
 
 // If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {
@@ -74,30 +74,30 @@ class Enqueue_Frontend_Scripts {
 	public function scripts() {
 
 		// Non-vendor plugin script. Uncomment to use.
-		// wp_enqueue_script( CCP_ADMIN_SLUG, CCP_URL . 'assets/js/frontend.js', [ 'jquery' ], CCP_VERSION, true );
+		// wp_enqueue_script( WMSUG_ADMIN_SLUG, WMSUG_URL . 'assets/js/frontend.js', [ 'jquery' ], WMSUG_VERSION, true );
 
 		// Fancybox 3.
-		if ( get_option( 'ccp_enqueue_fancybox_script' ) ) {
-			wp_enqueue_script( CCP_ADMIN_SLUG . '-fancybox', CCP_URL . 'assets/js/jquery.fancybox.min.js', [ 'jquery' ], CCP_VERSION, true );
+		if ( get_option( 'wmsug_enqueue_fancybox_script' ) ) {
+			wp_enqueue_script( WMSUG_ADMIN_SLUG . '-fancybox', WMSUG_URL . 'assets/js/jquery.fancybox.min.js', [ 'jquery' ], WMSUG_VERSION, true );
 		}
 
 		// Slick.
-		if ( get_option( 'ccp_enqueue_slick' ) ) {
-			wp_enqueue_script( CCP_ADMIN_SLUG . '-slick', CCP_URL . 'assets/js/slick.min.js', [ 'jquery' ], CCP_VERSION, true );
+		if ( get_option( 'wmsug_enqueue_slick' ) ) {
+			wp_enqueue_script( WMSUG_ADMIN_SLUG . '-slick', WMSUG_URL . 'assets/js/slick.min.js', [ 'jquery' ], WMSUG_VERSION, true );
 		}
 
 		// Tabslet.
-		if ( get_option( 'ccp_enqueue_tabslet' ) ) {
-			wp_enqueue_script( CCP_ADMIN_SLUG . '-tabslet', CCP_URL . 'assets/js/jquery.tabslet.min.js', [ 'jquery' ], CCP_VERSION, true );
+		if ( get_option( 'wmsug_enqueue_tabslet' ) ) {
+			wp_enqueue_script( WMSUG_ADMIN_SLUG . '-tabslet', WMSUG_URL . 'assets/js/jquery.tabslet.min.js', [ 'jquery' ], WMSUG_VERSION, true );
 		}
 
 		// Tooltipster.
-		if ( get_option( 'ccp_enqueue_tooltipster' ) ) {
-			wp_enqueue_script( CCP_ADMIN_SLUG . '-tooltipster', CCP_URL . 'assets/js/tooltipster.bundle.min.js', [ 'jquery' ], CCP_VERSION, true );
+		if ( get_option( 'wmsug_enqueue_tooltipster' ) ) {
+			wp_enqueue_script( WMSUG_ADMIN_SLUG . '-tooltipster', WMSUG_URL . 'assets/js/tooltipster.bundle.min.js', [ 'jquery' ], WMSUG_VERSION, true );
 		}
 
 		// FitVids.
-		wp_enqueue_script( CCP_ADMIN_SLUG . '-fitvids', CCP_URL . 'assets/js/jquery.fitvids.min.js', [ 'jquery' ], CCP_VERSION, true );
+		wp_enqueue_script( WMSUG_ADMIN_SLUG . '-fitvids', WMSUG_URL . 'assets/js/jquery.fitvids.min.js', [ 'jquery' ], WMSUG_VERSION, true );
 
 	}
 
@@ -110,11 +110,11 @@ class Enqueue_Frontend_Scripts {
  * @access public
  * @return object Returns an instance of the class.
  */
-function ccp_enqueue_frontend_scripts() {
+function wmsug_enqueue_frontend_scripts() {
 
 	return Enqueue_Frontend_Scripts::instance();
 
 }
 
 // Run an instance of the class.
-ccp_enqueue_frontend_scripts();
+wmsug_enqueue_frontend_scripts();

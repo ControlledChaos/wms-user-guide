@@ -2,16 +2,16 @@
 /**
  * Settings fields for user options.
  *
- * @package    Controlled_Chaos_Plugin
+ * @package    WMS_User_Guide
  * @subpackage Admin
  *
  * @since      1.0.0
  * @author     Greg Sweet <greg@ccdzine.com>
  */
 
-namespace CC_Plugin\Admin;
+namespace WMS_User_Guide\Admin;
 
-use CC_Plugin\Admin\Partials\Field_Callbacks\Users_Callbacks as Callbacks;
+use WMS_User_Guide\Admin\Partials\Field_Callbacks\Users_Callbacks as Callbacks;
 
 // If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {
@@ -77,7 +77,7 @@ class Settings_Fields_Users {
 	private function dependencies() {
 
 		// Callbacks for the Dashboard tab.
-		require CCP_PATH . 'admin/partials/field-callbacks/class-users-callbacks.php';
+		require WMSUG_PATH . 'admin/partials/field-callbacks/class-users-callbacks.php';
 
 	}
 
@@ -92,25 +92,25 @@ class Settings_Fields_Users {
 
         // User settings section.
         add_settings_section(
-            'ccp-site-users',
-            __( 'User Settings', 'controlled-chaos-plugin' ),
+            'wmsug-site-users',
+            __( 'User Settings', 'wms-user-guide' ),
             [],
-            'ccp-site-users'
+            'wmsug-site-users'
         );
 
         // Local avatars only (no Gravatars).
 		add_settings_field(
-			'ccp_block_gravatar',
-			__( 'Block Gravatars', 'controlled-chaos-plugin' ),
+			'wmsug_block_gravatar',
+			__( 'Block Gravatars', 'wms-user-guide' ),
 			[ Callbacks::instance(), 'block_gravatar' ],
-			'ccp-site-users',
-			'ccp-site-users',
-			[ esc_html__( 'Prevent avatar requests from Gravatar.com', 'controlled-chaos-plugin' ) ]
+			'wmsug-site-users',
+			'wmsug-site-users',
+			[ esc_html__( 'Prevent avatar requests from Gravatar.com', 'wms-user-guide' ) ]
 		);
 
 		register_setting(
-			'ccp-site-users',
-			'ccp_block_gravatar'
+			'wmsug-site-users',
+			'wmsug_block_gravatar'
 		);
 
     }
@@ -124,11 +124,11 @@ class Settings_Fields_Users {
  * @access public
  * @return object Returns an instance of the class.
  */
-function ccp_settings_fields_users() {
+function wmsug_settings_fields_users() {
 
 	return Settings_Fields_Users::instance();
 
 }
 
 // Run an instance of the class.
-ccp_settings_fields_users();
+wmsug_settings_fields_users();

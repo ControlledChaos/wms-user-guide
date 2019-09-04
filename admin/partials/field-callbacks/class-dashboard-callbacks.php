@@ -2,14 +2,14 @@
 /**
  * Callbacks for the Dashboard tab on the Site Settings page.
  *
- * @package    Controlled_Chaos_Plugin
+ * @package    WMS_User_Guide
  * @subpackage Admin\Partials\Field_Callbacks
  *
  * @since      1.0.0
  * @author     Greg Sweet <greg@ccdzine.com>
  */
 
-namespace CC_Plugin\Admin\Partials\Field_Callbacks;
+namespace WMS_User_Guide\Admin\Partials\Field_Callbacks;
 
 // If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {
@@ -67,11 +67,11 @@ class Dashboard_Callbacks {
 	 */
 	public function hide_try_gutenberg( $args ) {
 
-		$option = get_option( 'ccp_hide_try_gutenberg' );
+		$option = get_option( 'wmsug_hide_try_gutenberg' );
 
-		$html = '<p><input type="checkbox" id="ccp_hide_try_gutenberg" name="ccp_hide_try_gutenberg" value="1" ' . checked( 1, $option, false ) . '/>';
+		$html = '<p><input type="checkbox" id="wmsug_hide_try_gutenberg" name="wmsug_hide_try_gutenberg" value="1" ' . checked( 1, $option, false ) . '/>';
 
-		$html .= '<label for="ccp_hide_try_gutenberg"> '  . $args[0] . '</label></p>';
+		$html .= '<label for="wmsug_hide_try_gutenberg"> '  . $args[0] . '</label></p>';
 
 		echo $html;
 
@@ -87,11 +87,11 @@ class Dashboard_Callbacks {
 	 */
 	public function custom_welcome( $args ) {
 
-		$option = get_option( 'ccp_custom_welcome' );
+		$option = get_option( 'wmsug_custom_welcome' );
 
-		$html = '<p><input type="checkbox" id="ccp_custom_welcome" name="ccp_custom_welcome" value="1" ' . checked( 1, $option, false ) . '/>';
+		$html = '<p><input type="checkbox" id="wmsug_custom_welcome" name="wmsug_custom_welcome" value="1" ' . checked( 1, $option, false ) . '/>';
 
-		$html .= '<label for="ccp_custom_welcome"> ' . $args[0] . '</label></p>';
+		$html .= '<label for="wmsug_custom_welcome"> ' . $args[0] . '</label></p>';
 
 		echo $html;
 
@@ -107,11 +107,11 @@ class Dashboard_Callbacks {
 	 */
 	public function hide_welcome( $args ) {
 
-		$option = get_option( 'ccp_hide_welcome' );
+		$option = get_option( 'wmsug_hide_welcome' );
 
-		$html = '<p><input type="checkbox" id="ccp_hide_welcome" name="ccp_hide_welcome" value="1" ' . checked( 1, $option, false ) . '/>';
+		$html = '<p><input type="checkbox" id="wmsug_hide_welcome" name="wmsug_hide_welcome" value="1" ' . checked( 1, $option, false ) . '/>';
 
-		$html .= '<label for="ccp_hide_welcome"> '  . $args[0] . '</label></p>';
+		$html .= '<label for="wmsug_hide_welcome"> '  . $args[0] . '</label></p>';
 
 		echo $html;
 
@@ -127,11 +127,11 @@ class Dashboard_Callbacks {
 	 */
 	public function remove_welcome_dismiss( $args ) {
 
-		$option = get_option( 'ccp_remove_welcome_dismiss' );
+		$option = get_option( 'wmsug_remove_welcome_dismiss' );
 
-		$html = '<p><input type="checkbox" id="ccp_remove_welcome_dismiss" name="ccp_remove_welcome_dismiss" value="1" ' . checked( 1, $option, false ) . '/>';
+		$html = '<p><input type="checkbox" id="wmsug_remove_welcome_dismiss" name="wmsug_remove_welcome_dismiss" value="1" ' . checked( 1, $option, false ) . '/>';
 
-		$html .= '<label for="ccp_remove_welcome_dismiss"> '  . $args[0] . '</label></p>';
+		$html .= '<label for="wmsug_remove_welcome_dismiss"> '  . $args[0] . '</label></p>';
 
 		echo $html;
 
@@ -147,11 +147,11 @@ class Dashboard_Callbacks {
 	 */
 	public function hide_wp_news( $args ) {
 
-		$option = get_option( 'ccp_hide_wp_news' );
+		$option = get_option( 'wmsug_hide_wp_news' );
 
-		$html = '<p><input type="checkbox" id="ccp_hide_wp_news" name="ccp_hide_wp_news" value="1" ' . checked( 1, $option, false ) . '/>';
+		$html = '<p><input type="checkbox" id="wmsug_hide_wp_news" name="wmsug_hide_wp_news" value="1" ' . checked( 1, $option, false ) . '/>';
 
-		$html .= '<label for="ccp_hide_wp_news"> '  . $args[0] . '</label></p>';
+		$html .= '<label for="wmsug_hide_wp_news"> '  . $args[0] . '</label></p>';
 
 		echo $html;
 
@@ -167,11 +167,11 @@ class Dashboard_Callbacks {
 	 */
 	public function hide_quickpress( $args ) {
 
-		$option = get_option( 'ccp_hide_quickpress' );
+		$option = get_option( 'wmsug_hide_quickpress' );
 
-		$html = '<p><input type="checkbox" id="ccp_hide_quickpress" name="ccp_hide_quickpress" value="1" ' . checked( 1, $option, false ) . '/>';
+		$html = '<p><input type="checkbox" id="wmsug_hide_quickpress" name="wmsug_hide_quickpress" value="1" ' . checked( 1, $option, false ) . '/>';
 
-		$html .= '<label for="ccp_hide_quickpress"> '  . $args[0] . '</label></p>';
+		$html .= '<label for="wmsug_hide_quickpress"> '  . $args[0] . '</label></p>';
 
 		echo $html;
 
@@ -187,11 +187,11 @@ class Dashboard_Callbacks {
 	 */
 	public function hide_at_glance( $args ) {
 
-		$option = get_option( 'ccp_hide_at_glance' );
+		$option = get_option( 'wmsug_hide_at_glance' );
 
-		$html = '<p><input type="checkbox" id="ccp_hide_at_glance" name="ccp_hide_at_glance" value="1" ' . checked( 1, $option, false ) . '/>';
+		$html = '<p><input type="checkbox" id="wmsug_hide_at_glance" name="wmsug_hide_at_glance" value="1" ' . checked( 1, $option, false ) . '/>';
 
-		$html .= '<label for="ccp_hide_at_glance"> '  . $args[0] . '</label></p>';
+		$html .= '<label for="wmsug_hide_at_glance"> '  . $args[0] . '</label></p>';
 
 		echo $html;
 
@@ -207,11 +207,11 @@ class Dashboard_Callbacks {
 	 */
 	public function hide_activity( $args ) {
 
-		$option = get_option( 'ccp_hide_activity' );
+		$option = get_option( 'wmsug_hide_activity' );
 
-		$html = '<p><input type="checkbox" id="ccp_hide_activity" name="ccp_hide_activity" value="1" ' . checked( 1, $option, false ) . '/>';
+		$html = '<p><input type="checkbox" id="wmsug_hide_activity" name="wmsug_hide_activity" value="1" ' . checked( 1, $option, false ) . '/>';
 
-		$html .= '<label for="ccp_hide_activity"> '  . $args[0] . '</label></p>';
+		$html .= '<label for="wmsug_hide_activity"> '  . $args[0] . '</label></p>';
 
 		echo $html;
 
@@ -226,11 +226,11 @@ class Dashboard_Callbacks {
  * @access public
  * @return object Returns an instance of the class.
  */
-function ccp_dashboard_callbacks() {
+function wmsug_dashboard_callbacks() {
 
 	return Dashboard_Callbacks::instance();
 
 }
 
 // Run an instance of the class.
-ccp_dashboard_callbacks();
+wmsug_dashboard_callbacks();

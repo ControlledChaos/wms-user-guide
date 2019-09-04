@@ -2,14 +2,14 @@
 /**
  * Meta tags in the head.
  *
- * @package    Controlled_Chaos_Plugin
+ * @package    WMS_User_Guide
  * @subpackage Frontend\Meta_Tags
  *
  * @since      1.0.0
  * @author     Greg Sweet <greg@ccdzine.com>
  */
 
-namespace CC_Plugin\Frontend\Meta_Tags;
+namespace WMS_User_Guide\Frontend\Meta_Tags;
 
 // If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {
@@ -75,13 +75,13 @@ class Meta_Tags {
 	public function dependencies() {
 
 		// Get classes that create the output.
-		include_once CCP_PATH . 'frontend/meta-tags/class-meta-url.php';
-		include_once CCP_PATH . 'frontend/meta-tags/class-meta-title.php';
-		include_once CCP_PATH . 'frontend/meta-tags/class-meta-description.php';
-		include_once CCP_PATH . 'frontend/meta-tags/class-meta-author.php';
-		include_once CCP_PATH . 'frontend/meta-tags/class-meta-date-published.php';
-		include_once CCP_PATH . 'frontend/meta-tags/class-meta-date-modified.php';
-		include_once CCP_PATH . 'frontend/meta-tags/class-meta-image.php';
+		include_once WMSUG_PATH . 'frontend/meta-tags/class-meta-url.php';
+		include_once WMSUG_PATH . 'frontend/meta-tags/class-meta-title.php';
+		include_once WMSUG_PATH . 'frontend/meta-tags/class-meta-description.php';
+		include_once WMSUG_PATH . 'frontend/meta-tags/class-meta-author.php';
+		include_once WMSUG_PATH . 'frontend/meta-tags/class-meta-date-published.php';
+		include_once WMSUG_PATH . 'frontend/meta-tags/class-meta-date-modified.php';
+		include_once WMSUG_PATH . 'frontend/meta-tags/class-meta-image.php';
 
 	}
 
@@ -99,19 +99,19 @@ class Meta_Tags {
 	 */
 	public function meta_tags() {
 
-		if ( ccp_acf_options() ) {
-			$disable_tags = get_field( 'ccp_meta_disable_tags', 'option' );
+		if ( wmsug_acf_options() ) {
+			$disable_tags = get_field( 'wmsug_meta_disable_tags', 'option' );
 		} else {
-			$disable_tags = get_option( 'ccp_meta_disable' );
+			$disable_tags = get_option( 'wmsug_meta_disable' );
 		}
 
 		if ( ! $disable_tags || false == $disable_tags ) {
 
-			include_once CCP_PATH . 'frontend/meta-tags/meta-tags-standard.php';
-			include_once CCP_PATH . 'frontend/meta-tags/meta-tags-schema.php';
-			include_once CCP_PATH . 'frontend/meta-tags/meta-tags-open-graph.php';
-			include_once CCP_PATH . 'frontend/meta-tags/meta-tags-twitter.php';
-			include_once CCP_PATH . 'frontend/meta-tags/meta-tags-dublin-core.php';
+			include_once WMSUG_PATH . 'frontend/meta-tags/meta-tags-standard.php';
+			include_once WMSUG_PATH . 'frontend/meta-tags/meta-tags-schema.php';
+			include_once WMSUG_PATH . 'frontend/meta-tags/meta-tags-open-graph.php';
+			include_once WMSUG_PATH . 'frontend/meta-tags/meta-tags-twitter.php';
+			include_once WMSUG_PATH . 'frontend/meta-tags/meta-tags-dublin-core.php';
 
 		}
 
@@ -126,11 +126,11 @@ class Meta_Tags {
  * @access public
  * @return object Returns an instance of the class.
  */
-function ccp_meta_tags() {
+function wmsug_meta_tags() {
 
 	return Meta_Tags::instance();
 
 }
 
 // Run an instance of the class.
-ccp_meta_tags();
+wmsug_meta_tags();

@@ -2,7 +2,7 @@
 /**
  * Reset admin.
  *
- * @package    Controlled_Chaos_Plugin
+ * @package    WMS_User_Guide
  * @subpackage Includes\Tools\Database_Reset
  *
  * @since      1.0.0
@@ -10,7 +10,7 @@
  * @author     Greg Sweet <greg@ccdzine.com>
  */
 
-// namespace CC_Plugin\Includes\Tools\Database_Reset;
+// namespace WMS_User_Guide\Includes\Tools\Database_Reset;
 
 // If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {
@@ -114,7 +114,7 @@ if ( ! class_exists( 'DB_Reset_Admin' ) ) :
 				exit;
 			}
 
-			$this->notice_success = __( 'The selected tables were reset', 'controlled-chaos-plugin' );
+			$this->notice_success = __( 'The selected tables were reset', 'wms-user-guide' );
 
 		}
 
@@ -138,7 +138,7 @@ if ( ! class_exists( 'DB_Reset_Admin' ) ) :
 		private function assert_correct_code() {
 
 			if ( $this->request['db-reset-code'] !== $this->request['db-reset-code-confirm'] ) {
-				$this->notice_error = __( 'You entered the wrong security code', 'controlled-chaos-plugin' );
+				$this->notice_error = __( 'You entered the wrong security code', 'wms-user-guide' );
 				return false;
 			}
 
@@ -149,8 +149,8 @@ if ( ! class_exists( 'DB_Reset_Admin' ) ) :
 		public function add_tools_menu() {
 
 			$plugin_page = add_management_page(
-				__( 'Database Reset', 'controlled-chaos-plugin' ),
-				__( 'Database Reset', 'controlled-chaos-plugin' ),
+				__( 'Database Reset', 'wms-user-guide' ),
+				__( 'Database Reset', 'wms-user-guide' ),
 				'manage_options',
 				'database-reset',
 				[ $this, 'render' ]
@@ -196,8 +196,8 @@ if ( ! class_exists( 'DB_Reset_Admin' ) ) :
 		private function load_javascript_vars() {
 
 			return [
-				'confirmAlert' => __( 'Are you sure you want to continue?', 'controlled-chaos-plugin' ),
-				'selectTable'  => __( 'Select Tables', 'controlled-chaos-plugin' )
+				'confirmAlert' => __( 'Are you sure you want to continue?', 'wms-user-guide' ),
+				'selectTable'  => __( 'Select Tables', 'wms-user-guide' )
 			];
 
 		}

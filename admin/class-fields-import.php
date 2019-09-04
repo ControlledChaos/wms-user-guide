@@ -2,7 +2,7 @@
 /**
  * Import custom fields.
  *
- * @package    Controlled_Chaos_Plugin
+ * @package    WMS_User_Guide
  * @subpackage Admin
  *
  * @since      1.0.0
@@ -11,7 +11,7 @@
  * @link       https://github.com/BeAPI/ACF-PHP-Recovery
  */
 
-namespace CC_Plugin\Admin;
+namespace WMS_User_Guide\Admin;
 
 // If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {
@@ -75,8 +75,8 @@ final class Fields_Import {
 
 		add_submenu_page(
 			'edit.php?post_type=acf-field-group',
-			__( 'Registered Fields', 'controlled-chaos-plugin' ),
-			__( 'Registered Fields', 'controlled-chaos-plugin' ),
+			__( 'Registered Fields', 'wms-user-guide' ),
+			__( 'Registered Fields', 'wms-user-guide' ),
 			'manage_options', 'acf-theme-fields',
 			[ $this, 'page_output' ]
 		);
@@ -107,7 +107,7 @@ final class Fields_Import {
 
 			// Now we can import the groups
 			foreach ( acf()->local->groups as $key => $group ) {
-				$group['title'] = $group['title'] . __( ' (Imported)', 'controlled-chaos-plugin' );
+				$group['title'] = $group['title'] . __( ' (Imported)', 'wms-user-guide' );
 
 				// Only import those that were selected.
 				if ( in_array( $key, $import_fieldsets ) ) {
@@ -150,7 +150,7 @@ final class Fields_Import {
 			while ( $num_import > 0 );
 		}
 
-		include_once CCP_PATH . 'admin/partials/fields-import-page.php';
+		include_once WMSUG_PATH . 'admin/partials/fields-import-page.php';
 
 	}
 
@@ -163,11 +163,11 @@ final class Fields_Import {
  * @access public
  * @return object Returns an instance of the class.
  */
-function ccp_fields_import() {
+function wmsug_fields_import() {
 
 	return Fields_Import::instance();
 
 }
 
 // Run an instance of the class.
-ccp_fields_import();
+wmsug_fields_import();
