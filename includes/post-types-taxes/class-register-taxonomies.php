@@ -8,7 +8,7 @@
  * @since      1.0.0
  * @author     Greg Sweet <greg@ccdzine.com>
  *
- * @link       https://codex.wordpress.org/Function_Reference/register_taxonomy
+ * @link       https://codex.wordpress.org/Function_Reference/register_guide category
  */
 
 namespace WMS_User_Guide\Includes\Post_Types_Taxes;
@@ -38,6 +38,9 @@ final class Taxes_Register {
         // Register custom taxonomies.
 		add_action( 'init', [ $this, 'register' ] );
 
+		add_action( 'admin_menu', [ $this, 'add_submenu' ] );
+		add_action( 'parent_file', [ $this, 'set_submenu' ] );
+
 	}
 
     /**
@@ -50,55 +53,49 @@ final class Taxes_Register {
     public function register() {
 
         /**
-         * Taxonomy: Sample taxonomy (Taxonomy).
-         *
-         * Renaming:
-         * Search case "Taxonomy" and replace with your post type singular name.
-         * Search case "Taxonomies" and replace with your post type plural name.
-         * Search case "wmsug_taxonomy" and replace with your taxonomy database name.
-         * Search case "taxonomies" and replace with your taxonomy permalink slug.
+         * Guide Categories
          */
 
         $labels = [
-            'name'                       => __( 'Taxonomies', 'wms-user-guide' ),
-            'singular_name'              => __( 'Taxonomy', 'wms-user-guide' ),
-            'menu_name'                  => __( 'Taxonomy', 'wms-user-guide' ),
-            'all_items'                  => __( 'All Taxonomies', 'wms-user-guide' ),
-            'edit_item'                  => __( 'Edit Taxonomy', 'wms-user-guide' ),
-            'view_item'                  => __( 'View Taxonomy', 'wms-user-guide' ),
-            'update_item'                => __( 'Update Taxonomy', 'wms-user-guide' ),
-            'add_new_item'               => __( 'Add New Taxonomy', 'wms-user-guide' ),
-            'new_item_name'              => __( 'New Taxonomy', 'wms-user-guide' ),
-            'parent_item'                => __( 'Parent Taxonomy', 'wms-user-guide' ),
-            'parent_item_colon'          => __( 'Parent Taxonomy', 'wms-user-guide' ),
-            'popular_items'              => __( 'Popular Taxonomies', 'wms-user-guide' ),
-            'separate_items_with_commas' => __( 'Separate Taxonomies with commas', 'wms-user-guide' ),
-            'add_or_remove_items'        => __( 'Add or Remove Taxonomies', 'wms-user-guide' ),
-            'choose_from_most_used'      => __( 'Choose from the most used Taxonomies', 'wms-user-guide' ),
-            'not_found'                  => __( 'No Taxonomies Found', 'wms-user-guide' ),
-            'no_terms'                   => __( 'No Taxonomies', 'wms-user-guide' ),
-            'items_list_navigation'      => __( 'Taxonomies List Navigation', 'wms-user-guide' ),
-            'items_list'                 => __( 'Taxonomies List', 'wms-user-guide' )
+            'name'                       => __( 'Guide Categories', 'wms-user-guide' ),
+            'singular_name'              => __( 'Guide Category', 'wms-user-guide' ),
+            'menu_name'                  => __( 'Guide Category', 'wms-user-guide' ),
+            'all_items'                  => __( 'All Guide Categories', 'wms-user-guide' ),
+            'edit_item'                  => __( 'Edit Guide Category', 'wms-user-guide' ),
+            'view_item'                  => __( 'View Guide Category', 'wms-user-guide' ),
+            'update_item'                => __( 'Update Guide Category', 'wms-user-guide' ),
+            'add_new_item'               => __( 'Add New Guide Category', 'wms-user-guide' ),
+            'new_item_name'              => __( 'New Guide Category', 'wms-user-guide' ),
+            'parent_item'                => __( 'Parent Guide Category', 'wms-user-guide' ),
+            'parent_item_colon'          => __( 'Parent Guide Category', 'wms-user-guide' ),
+            'popular_items'              => __( 'Popular Guide Categories', 'wms-user-guide' ),
+            'separate_items_with_commas' => __( 'Separate Guide Categories with commas', 'wms-user-guide' ),
+            'add_or_remove_items'        => __( 'Add or Remove Guide Categories', 'wms-user-guide' ),
+            'choose_from_most_used'      => __( 'Choose from the most used Guide Categories', 'wms-user-guide' ),
+            'not_found'                  => __( 'No Guide Categories Found', 'wms-user-guide' ),
+            'no_terms'                   => __( 'No Guide Categories', 'wms-user-guide' ),
+            'items_list_navigation'      => __( 'Guide Categories List Navigation', 'wms-user-guide' ),
+            'items_list'                 => __( 'Guide Categories List', 'wms-user-guide' )
         ];
 
         $options = [
-            'label'              => __( 'Taxonomies', 'wms-user-guide' ),
+            'label'              => __( 'Guide Categories', 'wms-user-guide' ),
             'labels'             => $labels,
             'public'             => true,
             'hierarchical'       => false,
-            'label'              => 'Taxonomies',
+            'label'              => 'Guide Categories',
             'show_ui'            => true,
-            'show_in_menu'       => true,
-            'show_in_nav_menus'  => true,
+            'show_in_menu'       => 'users.php',
+            'show_in_nav_menus'  => false,
             'query_var'          => true,
             'rewrite'            => [
-                'slug'         => 'taxonomies',
+                'slug'         => 'user-guide-category',
                 'with_front'   => true,
                 'hierarchical' => false,
             ],
             'show_admin_column'  => true,
             'show_in_rest'       => true,
-            'rest_base'          => 'taxonomies',
+            'rest_base'          => 'user-guide-category',
             'show_in_quick_edit' => true
         ];
 
@@ -106,14 +103,54 @@ final class Taxes_Register {
          * Register the taxonomy
          */
         register_taxonomy(
-            'wmsug_taxonomy',
+            'user_guide_cats',
             [
-                'wmsug_post_type' // Change to your post type name.
+                'user_guide'
             ],
             $options
         );
 
-    }
+	}
+
+	/**
+     * Add a submenu of users for guide categories.
+     *
+     * @since  1.0.0
+	 * @access public
+	 * @return void
+     */
+    public function add_submenu() {
+
+		add_submenu_page(
+			'users.php',
+			__( 'Guide Categories', 'wms-user-guide' ),
+			__( 'Guide Categories', 'wms-user-guide' ),
+			'manage_options',
+			'edit-tags.php?taxonomy=user_guide_cats'
+		);
+
+	}
+
+	/**
+     * Set guide categories as a submenu of users.
+     *
+     * @since  1.0.0
+	 * @access public
+	 * @return object Returns the submenu item parent screen.
+     */
+    public function set_submenu( $parent_file ) {
+
+		// Access global variables.
+		global $current_screen;
+
+		$taxonomy = $current_screen->taxonomy;
+		if ( $taxonomy == 'user_guide_cats' ) {
+			$parent_file = 'users.php';
+		}
+
+		return $parent_file;
+
+	}
 
 }
 

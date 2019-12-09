@@ -54,99 +54,77 @@ final class Post_Types_Register {
     public function register() {
 
         /**
-         * Post Type: Sample custom post (Custom Posts).
-         *
-         * Renaming:
-         * Search case "Custom Post" and replace with your post type capitalized name.
-         * Search case "custom post" and replace with your post type lowercase name.
-         * Search case "wmsug_post_type" and replace with your post type database name.
-         * Search case "custom-posts" and replace with your post type archive permalink slug.
+         * Post Type: User Guide
          */
 
         $labels = [
-            'name'                  => __( 'Custom Posts', 'wms-user-guide' ),
-            'singular_name'         => __( 'Custom Post', 'wms-user-guide' ),
-            'menu_name'             => __( 'Custom Posts', 'wms-user-guide' ),
-            'all_items'             => __( 'All Custom Posts', 'wms-user-guide' ),
+            'name'                  => __( 'User Guide', 'wms-user-guide' ),
+            'singular_name'         => __( 'Guide Page', 'wms-user-guide' ),
+            'menu_name'             => __( 'User Guide', 'wms-user-guide' ),
+            'all_items'             => __( 'User Guide', 'wms-user-guide' ),
             'add_new'               => __( 'Add New', 'wms-user-guide' ),
-            'add_new_item'          => __( 'Add New Custom Post', 'wms-user-guide' ),
-            'edit_item'             => __( 'Edit Custom Post', 'wms-user-guide' ),
-            'new_item'              => __( 'New Custom Post', 'wms-user-guide' ),
-            'view_item'             => __( 'View Custom Post', 'wms-user-guide' ),
-            'view_items'            => __( 'View Custom Posts', 'wms-user-guide' ),
-            'search_items'          => __( 'Search Custom Posts', 'wms-user-guide' ),
-            'not_found'             => __( 'No Custom Posts Found', 'wms-user-guide' ),
-            'not_found_in_trash'    => __( 'No Custom Posts Found in Trash', 'wms-user-guide' ),
-            'parent_item_colon'     => __( 'Parent Custom Post', 'wms-user-guide' ),
-            'featured_image'        => __( 'Featured image for this custom post', 'wms-user-guide' ),
-            'set_featured_image'    => __( 'Set featured image for this custom post', 'wms-user-guide' ),
-            'remove_featured_image' => __( 'Remove featured image for this custom post', 'wms-user-guide' ),
-            'use_featured_image'    => __( 'Use as featured image for this custom post', 'wms-user-guide' ),
-            'archives'              => __( 'Custom Post archives', 'wms-user-guide' ),
-            'insert_into_item'      => __( 'Insert into Custom Post', 'wms-user-guide' ),
-            'uploaded_to_this_item' => __( 'Uploaded to this Custom Post', 'wms-user-guide' ),
-            'filter_items_list'     => __( 'Filter Custom Posts', 'wms-user-guide' ),
-            'items_list_navigation' => __( 'Custom Posts list navigation', 'wms-user-guide' ),
-            'items_list'            => __( 'Custom Posts List', 'wms-user-guide' ),
-            'attributes'            => __( 'Custom Post Attributes', 'wms-user-guide' ),
-            'parent_item_colon'     => __( 'Parent Custom Post', 'wms-user-guide' ),
+            'add_new_item'          => __( 'Add New Guide Page', 'wms-user-guide' ),
+            'edit_item'             => __( 'Edit Guide Page', 'wms-user-guide' ),
+            'new_item'              => __( 'New Guide Page', 'wms-user-guide' ),
+            'view_item'             => __( 'View Guide Page', 'wms-user-guide' ),
+            'view_items'            => __( 'View Guide Pages', 'wms-user-guide' ),
+            'search_items'          => __( 'Search', 'wms-user-guide' ),
+            'not_found'             => __( 'No Guide Pages Found', 'wms-user-guide' ),
+            'not_found_in_trash'    => __( 'No Guide Pages Found in Trash', 'wms-user-guide' ),
+            'parent_item_colon'     => __( 'Parent Guide Page', 'wms-user-guide' ),
+            'featured_image'        => __( 'Featured image for this Guide Page', 'wms-user-guide' ),
+            'set_featured_image'    => __( 'Set featured image for this Guide Page', 'wms-user-guide' ),
+            'remove_featured_image' => __( 'Remove featured image for this Guide Page', 'wms-user-guide' ),
+            'use_featured_image'    => __( 'Use as featured image for this Guide Page', 'wms-user-guide' ),
+            'archives'              => __( 'Guide Page archives', 'wms-user-guide' ),
+            'insert_into_item'      => __( 'Insert into Guide Page', 'wms-user-guide' ),
+            'uploaded_to_this_item' => __( 'Uploaded to this Guide Page', 'wms-user-guide' ),
+            'filter_items_list'     => __( 'Filter Guide Pages', 'wms-user-guide' ),
+            'items_list_navigation' => __( 'Guide Pages list navigation', 'wms-user-guide' ),
+            'items_list'            => __( 'Guide Pages List', 'wms-user-guide' ),
+            'attributes'            => __( 'Guide Page Attributes', 'wms-user-guide' ),
+            'parent_item_colon'     => __( 'Parent Guide Page', 'wms-user-guide' ),
         ];
 
         // Apply a filter to labels for customization.
-        $labels = apply_filters( 'wmsug_post_type_labels', $labels );
+        $labels = apply_filters( 'instruction_labels', $labels );
 
         $options = [
-            'label'               => __( 'Custom Posts', 'wms-user-guide' ),
+            'label'               => __( 'User Guide Pages', 'wms-user-guide' ),
             'labels'              => $labels,
-            'description'         => __( 'Custom post type description.', 'wms-user-guide' ),
+            'description'         => __( 'Guide pages for providing user instructions.', 'wms-user-guide' ),
             'public'              => true,
             'publicly_queryable'  => true,
             'show_ui'             => true,
             'show_in_rest'        => false,
-            'rest_base'           => 'wmsug_post_type_rest_api',
-            'has_archive'         => true,
-            'show_in_menu'        => true,
-            'exclude_from_search' => false,
-            'capability_type'     => 'post',
+            'rest_base'           => '',
+            'has_archive'         => false,
+            'show_in_menu'        => 'users.php',
+			'exclude_from_search' => true,
+			'capabilities'        => [
+				'manage_options'
+			],
+			'capability_type'     => 'post',
             'map_meta_cap'        => true,
             'hierarchical'        => false,
-            'rewrite'             => [
-                'slug'       => 'custom-posts',
-                'with_front' => true
-            ],
-            'query_var'           => 'wmsug_post_type',
-            'menu_position'       => 5,
-            'menu_icon'           => 'dashicons-admin-post',
+            'rewrite'             => false,
+            'query_var'           => 'user-guide',
+            'menu_position'       => 55,
+            'menu_icon'           => 'dashicons-welcome-learn-more',
             'supports'            => [
                 'title',
-                'editor',
-                'thumbnail',
-                'excerpt',
-                'trackbacks',
-                'custom-fields',
-                'comments',
-                'revisions',
-                'author',
-                'page-attributes',
-                'post-formats'
+				'editor',
+				'excerpt',
+				'revisions'
             ],
             'taxonomies'          => [
-                'category',
-                'post_tag',
-                'wmsug_taxonomy' // Change to your custom taxonomy name.
-            ],
+				'user_guide_cats'
+			],
         ];
 
-        // Apply a filter to arguments for customization.
-        $options = apply_filters( 'wmsug_post_type_args', $options );
-
-        /**
-         * Register the post type
-         *
-         * Maximum 20 characters, cannot contain capital letters or spaces.
-         */
+        // Register the Guide Page post type.
         register_post_type(
-            'wmsug_post_type',
+            'user_guide',
             $options
         );
 

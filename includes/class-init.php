@@ -61,7 +61,12 @@ final class Init {
 	 * @access private
 	 * @return self
 	 */
-	private function __construct() {}
+	private function __construct() {
+
+		// User guide settings.
+        add_action( 'admin_init', [ $this, 'settings' ] );
+
+	}
 
 	/**
 	 * Load the required dependencies for this plugin.
@@ -72,8 +77,8 @@ final class Init {
 	 */
 	private function dependencies() {
 
-		// Translation functionality.
-		require_once WMSUG_PATH . 'includes/class-i18n.php';
+		// Post types and taxonomies.
+		require_once WMSUG_PATH . 'includes/post-types-taxes/class-post-type-tax.php';
 
 		// Admin/backend functionality, scripts and styles.
 		require_once WMSUG_PATH . 'admin/class-admin.php';
@@ -81,42 +86,50 @@ final class Init {
 		// Frontend functionality, scripts and styles.
 		require_once WMSUG_PATH . 'frontend/class-frontend.php';
 
-		// Post types and taxonomies.
-		require_once WMSUG_PATH . 'includes/post-types-taxes/class-post-type-tax.php';
-
-		// User funtionality.
-		require_once WMSUG_PATH . 'includes/users/class-users.php';
-
-		// Dev and maintenance tools.
-		require_once WMSUG_PATH . 'includes/tools/class-tools.php';
+		// Translation functionality.
+		require_once WMSUG_PATH . 'includes/class-i18n.php';
 
 	}
 
 	/**
-	 * Load classes to extend plugins.
+	 * Media settings.
 	 *
 	 * @since  1.0.0
 	 * @access public
 	 * @return void
 	 */
-	public function plugin_support() {
+	public function settings() {
 
-		// Add Advanced Custom Fields Support.
-		if ( wmsug_acf() ) {
-			include_once WMSUG_PATH . 'includes/acf/class-extend-acf.php';
-		}
+		// Guide location setting.
+		add_settings_field(
+			'wms_user_guide_location',
+			__( 'User Guide Location', 'wms-user-guide' ),
+			[ $this, 'guide_location' ],
+			'reading',
+			'default',
+			[ __( 'Select where in the admin menu to display the guide link.', 'wms-user-guide' ) ]
+		);
 
-		// Add Beaver Builder support.
-		if ( class_exists( 'FLBuilder' ) ) {
-			include_once WMSUG_PATH . 'includes/beaver/class-beaver-builder.php';
-		}
-
-		// Add Elementor support.
-		if ( class_exists( '\Elementor\Plugin' ) ) {
-			include_once WMSUG_PATH . 'includes/elementor/class-elementor.php';
-		}
+		register_setting(
+            'reading',
+            'wms_user_guide_location'
+        );
 
 	}
+
+	/**
+     * Guide location setting
+     *
+     * @since  1.0.0
+	 * @access public
+	 * @return string
+     */
+    public function guide_location( $args ) {
+
+		// Get the setting HTML output.
+		include_once WMSUG_PATH . 'admin/partials/field-callbacks/setting-guide-location.php';
+
+    }
 
 }
 

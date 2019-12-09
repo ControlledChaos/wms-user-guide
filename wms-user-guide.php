@@ -9,12 +9,12 @@
  * @link        https://github.com/ControlledChaos/wms-user-guide
  * @license     GPL-3.0+ http://www.gnu.org/licenses/gpl-3.0.txt
  *
- * Plugin Name:  User Guide
+ * Plugin Name:  WMS User Guide
  * Plugin URI:   https://github.com/ControlledChaos/wms-user-guide
- * Description:  Instructions for WordPress/ClassicPress users.
+ * Description:  Create instructions and tutorials for WordPress/ClassicPress users.
  * Version:      1.0.0
  * Author:       Controlled Chaos Design
- * Author URI:   http://ccdzine.com/
+ * Author URI:   https://ccdzine.com/
  * License:      GPL-3.0+
  * License URI:  https://www.gnu.org/licenses/gpl.txt
  * Text Domain:  wms-user-guide
@@ -25,18 +25,18 @@
 /**
  * License & Warranty
  *
- * User Guide is free software: you can redistribute it and/or modify
+ * WMS User Guide is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 2 of the License, or
  * any later version.
  *
- * User Guide is distributed in the hope that it will be useful,
+ * WMS User Guide is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with User Guide. If not, see {URI to Plugin License}.
+ * along with WMS User Guide. If not, see {URI to Plugin License}.
  */
 
 // If this file is called directly, abort.
@@ -164,15 +164,11 @@ if ( ! class_exists( 'WMS_User_Guide' ) ) :
 			 *
 			 * This URL slug is used for various plugin admin & settings pages.
 			 *
-			 * The prefix will change in your search & replace in renaming the plugin.
-			 * Change the second part of the define(), here as 'wms-user-guide',
-			 * to your preferred page slug.
-			 *
 			 * @since  1.0.0
 			 * @return string Returns the URL slug of the admin pages.
 			 */
 			if ( ! defined( 'WMSUG_ADMIN_SLUG' ) ) {
-				define( 'WMSUG_ADMIN_SLUG', 'wms-user-guide' );
+				define( 'WMSUG_ADMIN_SLUG', 'user-guide' );
 			}
 
 		}
@@ -291,14 +287,7 @@ function wmsug_deactivate_plugin() {
 }
 
 /**
- * Add a link to the plugin's about page on the plugins page.
- *
- * The about page in its original form is intended to be read by
- * developers for getting familiar with the plugin, so it is
- * included in the admin menu under plugins.
- *
- * If you would like to link the page elsewhere as you make it your own then
- * do so in admin/class-admin-pages.php, in the about_plugin method.
+ * Add links to the plugin's admin pages
  *
  * Uses the universal slug partial for admin pages. Set this
  * slug in the core plugin file.
@@ -306,60 +295,45 @@ function wmsug_deactivate_plugin() {
  * @param  array $links Default plugin links on the 'Plugins' admin page.
  * @since  1.0.0
  * @access public
- * @return mixed[] Returns an HTML string for the about page link.
- *                 Returns an array of the about link with the default plugin links.
- * @link   https://codex.wordpress.org/Plugin_API/Filter_Reference/plugin_action_links_(plugin_file_name)
+ * @return mixed[] Returns an HTML string for the guide page link.
+ *                 Returns an array of the guide page link with the default plugin links.
  */
 function wmsug_about_link( $links ) {
 
-	/**
-	 * Site about page link depends on the admin menu setting.
-	 *
-	 * @since  1.0.0
-	 * @return string returns the URL of the page with parent or not.
-	 */
-
 	if ( is_admin() ) {
 
-		// If Advanced Custom Fields is active.
-		if ( wmsug_acf_options() ) {
+		// Get the guide location option.
+		$location = get_option( 'wms_user_guide_location' );
 
-			// Get the field.
-			$acf_position = get_field( 'wmsug_site_plugin_link_position', 'option' );
-
-			// Return true if the field is set to `top`.
-			if ( 'top' == $acf_position ) {
-				$position = true;
-
-			// Otherwise return `false`.
-			} else {
-				$position = false;
-			}
-
-		// If ACF is not active, get the field from the WordPress options page.
+		// Conditional URL for the user guide page.
+		if ( 'top' == $location ) {
+			$guide_url = admin_url( WMSUG_ADMIN_SLUG );
+		} elseif ( 'users' == $location ) {
+			$guide_url = admin_url( 'users.php?page=' . WMSUG_ADMIN_SLUG );
 		} else {
-
-			// Get the field.
-			$position = get_option( 'wmsug_site_plugin_link_position' );
+			$guide_url = admin_url( 'index.php?page=' . WMSUG_ADMIN_SLUG );
 		}
 
-		if ( true == $position ) {
-			$url = admin_url( 'index.php?page=' . WMSUG_ADMIN_SLUG . '-settings' );
-		} else {
-			$url = admin_url( 'admin.php?page=' . WMSUG_ADMIN_SLUG . '-settings' );
-		}
-
-		// Create new settings link array as a variable.
-		$about_page = [
+		// Link to the guide page.
+		$guide_page = [
 			sprintf(
-				'<a href="%1s" class="' . WMSUG_ADMIN_SLUG . '-page-link">%2s</a>',
-				admin_url( 'plugins.php?page=' . WMSUG_ADMIN_SLUG . '-page' ),
-				esc_attr( 'Documentation', 'wms-user-guide' )
+				'<a href="%1s">%2s</a>',
+				esc_url( $guide_url ),
+				esc_attr( 'User Guide', 'wms-user-guide' )
+			),
+		];
+
+		// Link to the guide post type management screen.
+		$posts_page = [
+			sprintf(
+				'<a href="%1s">%2s</a>',
+				esc_url( admin_url( 'edit.php?post_type=user_guide' ) ),
+				esc_attr( 'Manage', 'wms-user-guide' )
 			),
 		];
 
 		// Merge the new settings array with the default array.
-		return array_merge( $about_page, $links );
+		return array_merge( $guide_page, $posts_page, $links );
 
 	}
 
@@ -370,77 +344,22 @@ add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), 'wmsug_about_l
 /**
  * Add links to the plugin settings pages on the plugins page.
  *
- * Change the links to those which fill your needs.
- *
- * Uses the universal slug partial for admin pages. Set this
- * slug in the core plugin file.
- *
  * @param  array  $links Default plugin links on the 'Plugins' admin page.
  * @param  object $file Reference the root plugin file with header.
  * @since  1.0.0
  * @return mixed[] Returns HTML strings for the settings pages link.
  *                 Returns an array of custom links with the default plugin links.
- * @link   https://codex.wordpress.org/Plugin_API/Filter_Reference/plugin_action_links_(plugin_file_name)
  */
 function wmsug_settings_links( $links, $file ) {
 
 	if ( is_admin() ) {
 
-		/**
-		 * Site settings page link depends on the admin menu setting.
-		 *
-		 * @since  1.0.0
-		 * @return string returns the URL of the page with parent or not.
-		 */
-
-		// If Advanced Custom Fields is active.
-		if ( wmsug_acf_options() ) {
-
-			// Get the field.
-			$acf_position = get_field( 'wmsug_settings_link_position', 'option' );
-
-			// Return true if the field is set to `top`.
-			if ( 'top' == $acf_position ) {
-				$position = true;
-
-			// Otherwise return `false`.
-			} else {
-				$position = false;
-			}
-
-		// If ACF is not active, get the field from the WordPress options page.
-		} else {
-
-			// Get the field.
-			$position = get_option( 'wmsug_site_settings_position' );
-		}
-
-		if ( $position || true == $position ) {
-			$url = admin_url( 'admin.php?page=' . WMSUG_ADMIN_SLUG . '-settings' );
-		} else {
-			$url = admin_url( 'index.php?page=' . WMSUG_ADMIN_SLUG . '-settings' );
-		}
-
 		if ( $file == plugin_basename( __FILE__ ) ) {
 
-			// Add links to settings pages.
 			$links[] = sprintf(
-				'<a href="%1s" class="' . WMSUG_ADMIN_SLUG . '-settings-link">%2s</a>',
-				$url,
-				esc_attr( 'Site Settings', 'wms-user-guide' )
-			);
-			$links[] = sprintf(
-				'<a href="%1s" class="' . WMSUG_ADMIN_SLUG . '-scripts-link">%2s</a>',
-				admin_url( 'options-general.php?page=' . WMSUG_ADMIN_SLUG . '-scripts' ),
-				esc_attr( 'Script Options', 'wms-user-guide' )
-			);
-
-			// Add a placeholder for an upgrade link.
-			$links[] = sprintf(
-				'<a href="%1s" title="%2s" class="' . WMSUG_ADMIN_SLUG . '-upgrade-link" style="color: #888; cursor: default;">%3s</a>',
-				''/* Add upgrade URL here */,
-				__( 'Upgrade not available', 'wms-user-guide' ),
-				esc_attr( 'Upgrade', 'wms-user-guide' )
+				'<a href="%1s">%2s</a>',
+				admin_url( 'options-reading.php#user-guide-location' ),
+				esc_attr( 'Guide Location', 'wms-user-guide' )
 			);
 
 		}
@@ -483,60 +402,6 @@ function wmsug_new_cms() {
 function wmsug_classicpress() {
 
 	if ( function_exists( 'classicpress_version' ) ) {
-		return true;
-	} else {
-		return false;
-	}
-
-}
-
-/**
- * Check for Advanced Custom Fields.
- *
- * @since  1.0.0
- * @access public
- * @return bool Returns true if the ACF free or Pro plugin is active.
- */
-function wmsug_acf() {
-
-	if ( class_exists( 'acf' ) ) {
-		return true;
-	} else {
-		return false;
-	}
-
-}
-
-/**
- * Check for Advanced Custom Fields Pro.
- *
- * @since  1.0.0
- * @access public
- * @return bool Returns true if the ACF Pro plugin is active.
- */
-function wmsug_acf_pro() {
-
-	if ( class_exists( 'acf_pro' ) ) {
-		return true;
-	} else {
-		return false;
-	}
-
-}
-
-/**
- * Check for Advanced Custom Fields options page.
- *
- * @since  1.0.0
- * @access public
- * @return bool Returns true if ACF 4.0 free plus the
- *              Options Page addon or Pro plugin is active.
- */
-function wmsug_acf_options() {
-
-	if ( class_exists( 'acf_pro' ) ) {
-		return true;
-	} elseif ( ( class_exists( 'acf' ) && class_exists( 'acf_options_page' ) ) ) {
 		return true;
 	} else {
 		return false;

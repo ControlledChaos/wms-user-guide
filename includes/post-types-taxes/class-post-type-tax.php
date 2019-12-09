@@ -59,7 +59,13 @@ class Post_Types_Taxes {
 	 * @return void Constructor method is empty.
 	 *              Change to `self` if used.
 	 */
-	public function __construct() {}
+	public function __construct() {
+
+		// Make User Guide post type private by default.
+		add_action( 'transition_post_status', [ $this, 'private_posts' ], 10, 3 );
+		add_action( 'post_submitbox_misc_actions', [ $this, 'private_posts_metabox' ] );
+
+	}
 
 	/**
      * Class dependency files.
@@ -76,20 +82,65 @@ class Post_Types_Taxes {
 		// Resister cutsom taxonomies.
 		require_once WMSUG_PATH . 'includes/post-types-taxes/class-register-taxonomies.php';
 
-		// Functions related to post types and taxonomies.
-		require_once WMSUG_PATH . 'includes/post-types-taxes/class-post-type-tax-functions.php';
+	}
 
-		// Post types query on the blog front page.
-		require_once WMSUG_PATH . 'includes/post-types-taxes/class-post-type-front-page.php';
+	/**
+	 * Make User Guide post type private by default
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return void
+	 */
+	public function private_posts( $new_status, $old_status, $post ) {
 
-		// Number of posts per archive page.
-		require_once WMSUG_PATH . 'includes/post-types-taxes/class-posts-per-page.php';
+		if ( 'user_guide' == $post->post_type && 'publish' == $new_status && $old_status != $new_status ) {
+			$post->post_status = 'private';
+			wp_update_post( $post );
+		}
 
-		// Drag & drop custom post and taxonomy orders.
-		require_once WMSUG_PATH . 'includes/post-types-taxes/class-post-type-order.php';
+	}
 
-		// Capability to add custom taxonomy templates.
-		require_once WMSUG_PATH . 'includes/post-types-taxes/class-taxonomy-templates.php';
+	/**
+	 * User Guide post type publish metabox
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return string Returns CSS and JavaScript for the metabox.
+	 */
+	public function private_posts_metabox() {
+
+		// Access global variables.
+		global $post;
+
+		// Bail if not user guide post type.
+		if ( ! 'user_guide' == $post->post_type ) {
+			return;
+		}
+
+		// Function variables.
+		$message = __( '<strong>Note:</strong> User Guide posts are always <strong>private</strong>.', 'wms-user-guide' );
+		$post->post_password = '';
+		$visibility = 'private';
+		$visibility_text = __( 'Private', 'wms-user-guide' );
+		?>
+		<style type="text/css">
+			.private-nosts-note {
+				margin: 0;
+				padding: 1em;
+			}
+		</style>
+		<script type="text/javascript">
+			(function($){
+				try {
+					$('#post-visibility-display').text('<?php echo $visibility_text; ?>');
+					$('#hidden-post-visibility').val('<?php echo $visibility; ?>');
+				} catch(err){}
+			}) (jQuery);
+		</script>
+		<div class="private-nosts-note">
+			<?php echo $message; ?>
+		</div>
+		<?php
 
 	}
 
